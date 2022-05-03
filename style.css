@@ -1,2 +1,118 @@
-var canvas = document.getElementById('canvas');
-var ctx = canvas.getContext('2d');
+*, body, html {
+  margin: 0;
+  padding: 0;
+  position: relative;
+  font-family:Arial, Helvetica, sans-serif; 
+}
+.main {
+  position: relative;
+  display: flex;
+  align-items: flex-start;
+  justify-content: left;
+  margin: 2rem;
+  gap: 2rem;
+}
+.all-keys {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-start;
+  justify-content: left;
+  gap: 0.05rem !important;
+  padding: 2rem !important;
+  max-width: 30%;
+}
+.layer-container, .all-keys {
+  height: calc(100vh - 10rem) !important;
+  padding-top: 3rem !important;
+  overflow-y: hidden;
+}
+.layer-container, .layer, .all-keys {
+  position: relative;
+  padding: 2rem;
+  border: solid black 0.25rem;
+  border-radius: 2rem;
+  margin-bottom: 2rem;
+}
+.layer .wrapper, .all-keys .wrapper {
+  position: relative;
+  display: flex;
+  gap: 2rem;
+}
+.all-keys .wrapper {
+  max-height: 100% !important;
+  overflow-y: scroll;
+}
+.layer-container .label, .layer .label, .all-keys .label {
+  position: absolute;
+  left: 4rem;
+  top: 0;
+  transform: translateY(-50%);
+  background-color: white;
+  padding: 0.5rem;
+  border-radius: 0.5rem;
+  border: solid black 0.25rem;
+}
+.layer .left, .layer .right {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-evenly;
+  flex-wrap: wrap;
+  width: 21rem;
+}
+.layer .left {
+  justify-content: right;
+}
+.layer .right {
+  justify-content: left;
+}
+.key {
+  position: relative;
+  display: flex;
+  width: 4rem;
+  padding: 0.2rem 0.5rem 0.8rem 0.5rem;
+  margin: 0.05rem;
+  font-size: 1.5rem;
+  cursor: pointer;
+  border: solid black 0.25rem;
+  background-color: white;
+  border-radius: 1rem;
+  box-sizing: border-box;
+  aspect-ratio: 1;
+  align-items: center;
+  justify-content: center;
+  box-shadow: inset -0.25rem -0.25rem #ddd;
+}
+.key .lock {
+  position: absolute;
+  left: 0.25rem;
+  top: 0.25rem;
+  opacity: 0;
+  font-size: 0.75rem;
+}
+.key.locked .lock {
+  opacity: 1;
+}
+.key.locked {
+  background-color: #f0f0f0 !important;
+}
+.key.dragged {
+  opacity: 0.5;
+}
+.key.over {
+  border-style: dashed;
+}
+.key.homed::after {
+  content: '-';
+  position: absolute;
+  bottom: 0.45rem;
+  left: 50%;
+  transform: translateX(-50%);
+  color: #ccc;
+}
+.key .hold {
+  position: absolute;
+  bottom: 0.25rem;
+  left: 0.25rem;
+  font-size: 0.75rem;
+  color: #333;
+}
